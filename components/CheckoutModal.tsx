@@ -11,10 +11,9 @@ interface CheckoutModalProps {
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, onClose }) => {
   const [step, setStep] = useState<'form' | 'success'>('form');
   const [formData, setFormData] = useState<OrderForm>({
-    fullName: '',
+    name: '',
     city: '',
-    phone: '',
-    address: ''
+    phone: ''
   });
 
   if (!isOpen || !product) return null;
@@ -29,7 +28,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, o
 
   const handleClose = () => {
     setStep('form');
-    setFormData({ fullName: '', city: '', phone: '', address: '' });
+    setFormData({ name: '', city: '', phone: '' });
     onClose();
   };
 
@@ -70,16 +69,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, o
               {/* Form */}
               <form id="checkout-form" onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">الاسم الكامل</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">الاسم</label>
                   <div className="relative">
                     <User className="absolute right-3 top-3 text-gray-400" size={18} />
                     <input
                       type="text"
                       required
                       className="w-full pr-10 pl-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none"
-                      placeholder="أدخل اسمك الكامل"
-                      value={formData.fullName}
-                      onChange={e => setFormData({...formData, fullName: e.target.value})}
+                      placeholder="أدخل اسمك"
+                      value={formData.name}
+                      onChange={e => setFormData({...formData, name: e.target.value})}
                     />
                   </div>
                 </div>
@@ -121,17 +120,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, o
                       <option value="Other">مدينة أخرى</option>
                     </select>
                   </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">العنوان (اختياري)</label>
-                  <textarea
-                    rows={2}
-                    className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none"
-                    placeholder="تفاصيل العنوان لتسهيل التوصيل"
-                    value={formData.address}
-                    onChange={e => setFormData({...formData, address: e.target.value})}
-                  />
                 </div>
               </form>
             </div>

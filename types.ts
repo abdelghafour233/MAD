@@ -21,8 +21,7 @@ export interface Category {
 }
 
 export interface OrderForm {
-  fullName: string;
+  name: string;
   city: string;
   phone: string;
-  address?: string;
 }
