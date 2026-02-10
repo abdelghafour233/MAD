@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowRight, ShoppingCart, Truck, ShieldCheck, Check } from 'lucide-react';
+import { ShoppingCart, Zap, ShieldCheck, Check } from 'lucide-react';
 import { PRODUCTS } from '../constants';
 import { CheckoutModal } from '../components/CheckoutModal';
 import { Product } from '../types';
@@ -34,9 +34,9 @@ export const ProductDetails: React.FC = () => {
           <Link to="/" className="hover:text-brand-600 transition">الرئيسية</Link>
           <span className="rotate-180">/</span>
           <Link to={`/category/${product.category}`} className="hover:text-brand-600 transition">
-            {product.category === 'glasses' ? 'نظارات' : 
-             product.category === 'watches' ? 'ساعات' : 
-             product.category === 'car-accessories' ? 'إكسسوارات السيارات' : 'متنوعة'}
+            {product.category === 'streaming' ? 'اشتراكات البث' : 
+             product.category === 'software' ? 'برامج وتطبيقات' : 
+             product.category === 'courses' ? 'دورات تعليمية' : 'ألعاب'}
           </Link>
           <span className="rotate-180">/</span>
           <span className="text-gray-900 font-bold">{product.title}</span>
@@ -49,7 +49,7 @@ export const ProductDetails: React.FC = () => {
               <img 
                 src={product.image} 
                 alt={product.title} 
-                className="w-full h-auto max-h-[500px] object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-auto max-h-[500px] object-contain shadow-2xl rounded-lg transition-transform duration-500 group-hover:scale-105"
               />
               {product.oldPrice && (
                 <div className="absolute top-6 right-6 bg-red-500 text-white font-bold px-4 py-2 rounded-xl shadow-lg">
@@ -63,9 +63,9 @@ export const ProductDetails: React.FC = () => {
               <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">{product.title}</h1>
               
               <div className="flex items-end gap-4 mb-8">
-                <span className="text-4xl font-black text-brand-600">{product.price} د.م.</span>
+                <span className="text-4xl font-black text-brand-600">{product.price} درهم</span>
                 {product.oldPrice && (
-                  <span className="text-xl text-gray-400 line-through mb-1">{product.oldPrice} د.م.</span>
+                  <span className="text-xl text-gray-400 line-through mb-1">{product.oldPrice} درهم</span>
                 )}
               </div>
 
@@ -93,15 +93,15 @@ export const ProductDetails: React.FC = () => {
                   className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-600 transition-all flex items-center justify-center gap-3 shadow-lg shadow-gray-900/10 hover:shadow-brand-500/30"
                 >
                   <ShoppingCart size={20} />
-                  اشترِ الآن - الدفع عند الاستلام
+                  اطلب الآن عبر واتساب
                 </button>
                 
                 <div className="grid grid-cols-2 gap-4 text-xs text-gray-500">
                   <div className="flex items-center justify-center gap-2 bg-gray-50 py-2 rounded-lg">
-                    <Truck size={16} className="text-brand-600" /> توصيل سريع خلال 24-48 ساعة
+                    <Zap size={16} className="text-brand-600" /> تسليم فوري للكود
                   </div>
                   <div className="flex items-center justify-center gap-2 bg-gray-50 py-2 rounded-lg">
-                    <ShieldCheck size={16} className="text-brand-600" /> ضمان الجودة والاسترجاع
+                    <ShieldCheck size={16} className="text-brand-600" /> ضمان كامل المدة
                   </div>
                 </div>
               </div>

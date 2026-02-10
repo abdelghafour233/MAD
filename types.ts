@@ -11,7 +11,7 @@ export interface Product {
   features: string[];
 }
 
-export type CategoryId = 'glasses' | 'watches' | 'car-accessories' | 'misc';
+export type CategoryId = 'streaming' | 'software' | 'courses' | 'games';
 
 export interface Category {
   id: CategoryId;

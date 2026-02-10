@@ -15,8 +15,8 @@ export const Home: React.FC = () => {
       <section className="relative h-[500px] bg-gray-900 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80" 
-            alt="Hero Background" 
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80" 
+            alt="Digital World Background" 
             className="w-full h-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
@@ -25,21 +25,21 @@ export const Home: React.FC = () => {
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <div className="max-w-2xl">
             <span className="inline-block bg-brand-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-6">
-              وصل حديثاً
+              خدمات رقمية مميزة
             </span>
             <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-              أفضل المنتجات <br/>
-              <span className="text-brand-500">لأفضل الأسعار</span>
+              طور حياتك <br/>
+              <span className="text-brand-500">الرقمية والمهنية</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8 max-w-lg leading-relaxed">
-              تسوق الآن واكتشف تشكيلة واسعة من النظارات، الساعات، وإكسسوارات السيارات. جودة عالية وتوصيل سريع لباب منزلك.
+              احصل على اشتراكات بريميوم، برامج أصلية، ودورات تعليمية احترافية في التجارة الإلكترونية. تسليم فوري وضمان شامل.
             </p>
             <div className="flex gap-4">
               <a href="#categories" className="bg-white text-gray-900 px-8 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors">
-                تصفح الأقسام
+                تصفح الخدمات
               </a>
               <a href="#featured" className="bg-brand-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-700 transition-colors">
-                أحدث العروض
+                العروض الخاصة
               </a>
             </div>
           </div>
@@ -50,7 +50,7 @@ export const Home: React.FC = () => {
       <section id="categories" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-black text-gray-900 mb-4">تسوق حسب القسم</h2>
+            <h2 className="text-3xl font-black text-gray-900 mb-4">ماذا نقدم؟</h2>
             <div className="w-20 h-1 bg-brand-500 mx-auto rounded-full"></div>
           </div>
           
@@ -77,10 +77,10 @@ export const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-black text-gray-900 mb-4">منتجات مختارة لك</h2>
+              <h2 className="text-3xl font-black text-gray-900 mb-4">الأكثر مبيعاً</h2>
               <div className="w-20 h-1 bg-brand-500 rounded-full"></div>
             </div>
-            <Link to="/category/misc" className="hidden md:flex items-center gap-2 text-brand-600 font-bold hover:gap-4 transition-all">
+            <Link to="/category/streaming" className="hidden md:flex items-center gap-2 text-brand-600 font-bold hover:gap-4 transition-all">
               عرض الكل <ArrowLeft size={20} />
             </Link>
           </div>
@@ -96,7 +96,7 @@ export const Home: React.FC = () => {
           </div>
           
           <div className="mt-12 text-center md:hidden">
-            <Link to="/category/misc" className="inline-block border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-xl font-bold hover:bg-gray-900 hover:text-white transition-colors">
+            <Link to="/category/streaming" className="inline-block border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-xl font-bold hover:bg-gray-900 hover:text-white transition-colors">
               عرض جميع المنتجات
             </Link>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, MapPin, User, Phone } from 'lucide-react';
+import { X, CheckCircle, MapPin, User, Phone, MessageCircle } from 'lucide-react';
 import { Product, OrderForm } from '../types';
 
 interface CheckoutModalProps {
@@ -20,10 +20,24 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, o
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
-    setTimeout(() => {
-      setStep('success');
-    }, 1000);
+    
+    const phoneNumber = "212649075664";
+    const message = `*طلب جديد* 🛍️
+    
+*المنتج:* ${product.title}
+*السعر:* ${product.price} درهم
+    
+*معلومات الزبون:*
+👤 *الاسم:* ${formData.name}
+📱 *الهاتف:* ${formData.phone}
+📍 *المدينة:* ${formData.city}
+    
+يرجى تأكيد الطلب. شكراً!`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, '_blank');
+    setStep('success');
   };
 
   const handleClose = () => {
@@ -129,12 +143,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, o
               <button 
                 type="submit" 
                 form="checkout-form"
-                className="w-full bg-brand-600 text-white py-3 rounded-xl font-bold text-lg hover:bg-brand-700 active:scale-[0.98] transition-all shadow-lg shadow-brand-500/20"
+                className="w-full bg-[#25D366] text-white py-3 rounded-xl font-bold text-lg hover:bg-[#128C7E] active:scale-[0.98] transition-all shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2"
               >
-                تأكيد الطلب الآن
+                <MessageCircle size={20} />
+                إرسال الطلب عبر واتساب
               </button>
               <p className="text-center text-xs text-gray-500">
-                الدفع عند الاستلام - توصيل سريع ومضمون
+                سيتم تحويلك إلى واتساب لإتمام عملية الطلب
               </p>
             </div>
           </div>
@@ -142,11 +157,11 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ product, isOpen, o
           /* Success State */
           <div className="p-12 flex flex-col items-center justify-center text-center">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
-              <CheckCircle className="text-green-600 w-10 h-10" />
+              <MessageCircle className="text-[#25D366] w-10 h-10" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">تم استلام طلبك بنجاح!</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">جاري التحويل للواتساب...</h3>
             <p className="text-gray-500 mb-8 max-w-xs">
-              شكراً لثقتك بنا. سيقوم فريقنا بالاتصال بك قريباً على الرقم <span dir="ltr" className="font-bold text-gray-900">{formData.phone}</span> لتأكيد الطلب وموعد التوصيل.
+              لإكمال الطلب، يرجى إرسال الرسالة التي تم تجهيزها تلقائياً عبر تطبيق واتساب.
             </p>
             <button 
               onClick={handleClose}
