@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     price: 35,
     oldPrice: 65,
     category: 'streaming',
-    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=800&q=80',
     description: 'استمتع بمشاهدة أفلامك ومسلسلاتك المفضلة بجودة 4K Ultra HD. حساب خاص، يدعم الترجمة العربية، وضمان كامل المدة.',
     features: ['جودة 4K UHD', 'بدون إعلانات', 'ضمان 30 يوم', 'يعمل على التلفاز والهاتف']
   },
@@ -45,7 +45,7 @@ export const PRODUCTS: Product[] = [
     price: 99,
     oldPrice: 250,
     category: 'software',
-    image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1606166325683-1627b5ebd2b1?auto=format&fit=crop&w=800&q=80',
     description: 'مفتاح تفعيل ويندوز 11 برو أصلي مدى الحياة. يدعم التحديثات الرسمية من مايكروسوفت وجميع اللغات.',
     features: ['تفعيل مدى الحياة', 'يدعم التحديثات', 'نسخة أصلية 100%', 'دعم النواتين 32/64']
   },
@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
     price: 150,
     oldPrice: 400,
     category: 'software',
-    image: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
     description: 'حزمة أوفيس 365 كاملة (Word, Excel, PowerPoint) مع مساحة تخزين سحابية 1TB على OneDrive.',
     features: ['5 أجهزة لنفس الحساب', 'مساحة 1TB سحابية', 'تحديثات مستمرة', 'يدعم الماك والويندوز']
   },
@@ -75,7 +75,7 @@ export const PRODUCTS: Product[] = [
     price: 69,
     oldPrice: 200,
     category: 'software',
-    image: 'https://images.unsplash.com/photo-1626785774573-4b799314346d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80',
     description: 'احصل على جميع ميزات كانفا برو. قوالب غير محدودة، إزالة الخلفية، وصور احترافية. تفعيل على بريدك الإلكتروني الشخصي.',
     features: ['تفعيل على ايميلك', 'ضمان مدى الحياة', 'وصول كامل للمكتبة', 'Magic Resize']
   },
@@ -85,7 +85,7 @@ export const PRODUCTS: Product[] = [
     price: 299,
     oldPrice: 600,
     category: 'courses',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     description: 'احترف إعلانات الفيسبوك وانستغرام. تعلم كيفية استهداف الجمهور الصحيح، كتابة المحتوى الإعلاني، وتحليل النتائج لزيادة المبيعات.',
     features: ['استراتيجيات الاستهداف', 'Scaling للحملات', 'حل مشاكل الحظر', 'تحديثات 2024']
   },
@@ -104,7 +104,7 @@ export const PRODUCTS: Product[] = [
     title: 'Adobe Creative Cloud - اشتراك 3 أشهر',
     price: 450,
     category: 'software',
-    image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1626785774573-4b799314346d?auto=format&fit=crop&w=800&q=80',
     description: 'اشتراك رسمي في جميع تطبيقات أدوبي (Photoshop, Illustrator, Premiere, etc). سحابة تخزينية وتحديثات رسمية.',
     features: ['كل تطبيقات أدوبي', 'تحديثات أصلية', 'مساحة سحابية', 'تفعيل رسمي']
   }
