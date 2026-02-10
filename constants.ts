@@ -45,7 +45,7 @@ export const PRODUCTS: Product[] = [
     price: 99,
     oldPrice: 250,
     category: 'software',
-    image: 'https://images.unsplash.com/photo-1606166325683-1627b5ebd2b1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80',
     description: 'مفتاح تفعيل ويندوز 11 برو أصلي مدى الحياة. يدعم التحديثات الرسمية من مايكروسوفت وجميع اللغات.',
     features: ['تفعيل مدى الحياة', 'يدعم التحديثات', 'نسخة أصلية 100%', 'دعم النواتين 32/64']
   },

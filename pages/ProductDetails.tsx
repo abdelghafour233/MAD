@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ShoppingCart, Zap, ShieldCheck, Check } from 'lucide-react';
+import { ShoppingCart, Zap, ShieldCheck, Check, Facebook, Link as LinkIcon, MessageCircle, Share2 } from 'lucide-react';
 import { PRODUCTS } from '../constants';
 import { CheckoutModal } from '../components/CheckoutModal';
 import { Product } from '../types';
@@ -8,6 +8,7 @@ import { Product } from '../types';
 export const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,6 +26,17 @@ export const ProductDetails: React.FC = () => {
       </div>
     );
   }
+
+  // Sharing Logic
+  const productUrl = `${window.location.origin}${window.location.pathname}#/product/${product.id}`;
+  const text = encodeURIComponent(`شاهد هذا العرض المميز: ${product.title}`);
+  const url = encodeURIComponent(productUrl);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(productUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="py-12 bg-gray-50 min-h-screen animate-fade-in">
@@ -87,7 +99,7 @@ export const ProductDetails: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="mt-auto pt-8 border-t border-gray-100 space-y-4">
+              <div className="mt-auto pt-8 border-t border-gray-100 space-y-6">
                 <button 
                   onClick={() => setIsModalOpen(true)}
                   className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-600 transition-all flex items-center justify-center gap-3 shadow-lg shadow-gray-900/10 hover:shadow-brand-500/30"
@@ -96,7 +108,7 @@ export const ProductDetails: React.FC = () => {
                   اطلب الآن عبر واتساب
                 </button>
                 
-                <div className="grid grid-cols-2 gap-4 text-xs text-gray-500">
+                <div className="grid grid-cols-2 gap-4 text-xs text-gray-500 mb-4">
                   <div className="flex items-center justify-center gap-2 bg-gray-50 py-2 rounded-lg">
                     <Zap size={16} className="text-brand-600" /> تسليم فوري للكود
                   </div>
@@ -104,6 +116,42 @@ export const ProductDetails: React.FC = () => {
                     <ShieldCheck size={16} className="text-brand-600" /> ضمان كامل المدة
                   </div>
                 </div>
+
+                {/* Sharing Section */}
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="flex items-center gap-2 text-gray-700 font-bold mb-3">
+                    <Share2 size={18} />
+                    <span>شارك هذا المنتج مع أصدقائك</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a 
+                      href={`https://wa.me/?text=${text}%20${url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-[#25D366]/10 text-[#25D366] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all"
+                    >
+                      <MessageCircle size={18} />
+                      واتساب
+                    </a>
+                    <a 
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-[#1877F2]/10 text-[#1877F2] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#1877F2] hover:text-white transition-all"
+                    >
+                      <Facebook size={18} />
+                      فيسبوك
+                    </a>
+                    <button 
+                      onClick={handleCopyLink}
+                      className="bg-white border border-gray-200 text-gray-600 p-2 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-all"
+                      title="نسخ الرابط"
+                    >
+                      {copied ? <Check size={20} className="text-green-500" /> : <LinkIcon size={20} />}
+                    </button>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

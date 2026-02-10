@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Eye } from 'lucide-react';
+import { ShoppingCart, Eye, Facebook, Link as LinkIcon, MessageCircle, Check } from 'lucide-react';
 import { Product } from '../types';
 
 interface ProductCardProps {
@@ -9,6 +9,18 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuyNow }) => {
+  const [copied, setCopied] = useState(false);
+
+  const productUrl = `${window.location.origin}${window.location.pathname}#/product/${product.id}`;
+  const text = encodeURIComponent(`شاهد هذا العرض المميز: ${product.title}`);
+  const url = encodeURIComponent(productUrl);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(productUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col">
       <div className="relative aspect-square overflow-hidden bg-gray-100">
@@ -44,7 +56,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuyNow }) =
           </h3>
         </Link>
         
-        <div className="mt-auto pt-4 flex items-center justify-between">
+        <div className="mt-auto pt-2 flex items-center justify-between mb-3">
           <div className="flex flex-col">
             {product.oldPrice && (
               <span className="text-xs text-gray-400 line-through">
@@ -58,11 +70,41 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuyNow }) =
           
           <button 
             onClick={() => onBuyNow(product)}
-            className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-brand-600 transition-colors flex items-center gap-2"
+            className="bg-gray-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-brand-600 transition-colors flex items-center gap-1"
           >
-            <ShoppingCart size={16} />
-            اشترِ الآن
+            <ShoppingCart size={14} />
+            شراء
           </button>
+        </div>
+
+        {/* Share Buttons Footer */}
+        <div className="pt-3 border-t border-gray-100 flex items-center justify-center gap-4">
+            <span className="text-xs text-gray-400 ml-1">مشاركة:</span>
+            <a 
+              href={`https://wa.me/?text=${text}%20${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#25D366] transition-colors"
+              title="مشاركة عبر واتساب"
+            >
+              <MessageCircle size={18} />
+            </a>
+            <a 
+              href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#1877F2] transition-colors"
+              title="مشاركة عبر فيسبوك"
+            >
+              <Facebook size={18} />
+            </a>
+            <button 
+              onClick={handleCopyLink}
+              className={`transition-colors ${copied ? 'text-brand-600' : 'text-gray-400 hover:text-gray-900'}`}
+              title="نسخ الرابط"
+            >
+              {copied ? <Check size={18} /> : <LinkIcon size={18} />}
+            </button>
         </div>
       </div>
     </div>
