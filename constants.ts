@@ -32,7 +32,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '1',
     title: 'اشتراك Netflix Premium - شهر واحد',
-    price: 35,
+    price: 45,
     oldPrice: 65,
     category: 'streaming',
     image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=800&q=80',
