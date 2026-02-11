@@ -30,7 +30,7 @@ export const Layout: React.FC = () => {
             </button>
             <Link to="/" className="text-2xl font-black text-brand-600 flex items-center gap-2">
               <Monitor className="w-8 h-8" />
-              <span>ديجيتال برو</span>
+              <span>ديجيتال اوفيس</span>
             </Link>
           </div>
 
@@ -119,7 +119,7 @@ export const Layout: React.FC = () => {
             <div className="col-span-1 md:col-span-2">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Monitor className="text-brand-500" />
-                ديجيتال برو
+                ديجيتال اوفيس
               </h2>
               <p className="text-gray-400 max-w-sm leading-relaxed">
                 وجهتك الأولى للمنتجات الرقمية في المغرب. نوفر لك أفضل اشتراكات البث، مفاتيح الويندوز والأوفيس، والدورات التعليمية بأفضل الأسعار.
@@ -145,7 +145,7 @@ export const Layout: React.FC = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} جميع الحقوق محفوظة لمتجر ديجيتال برو
+            © {new Date().getFullYear()} جميع الحقوق محفوظة لمتجر ديجيتال اوفيس
           </div>
         </div>
       </footer>
