@@ -100,6 +100,18 @@ export const Layout: React.FC = () => {
         </div>
       </div>
 
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/212649075664"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20b85a] transition-all animate-shake hover:animate-none flex items-center justify-center border-4 border-white ring-2 ring-gray-100"
+        title="تواصل معنا عبر واتساب"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle size={32} fill="white" className="text-white" />
+      </a>
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">

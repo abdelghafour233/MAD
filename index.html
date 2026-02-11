@@ -29,6 +29,7 @@
             animation: {
               'fade-in': 'fadeIn 0.5s ease-out',
               'fade-in-up': 'fadeInUp 0.5s ease-out',
+              'shake': 'shake 2s ease-in-out infinite',
             },
             keyframes: {
               fadeIn: {
@@ -38,6 +39,15 @@
               fadeInUp: {
                 '0%': { opacity: '0', transform: 'translateY(10px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              shake: {
+                '0%, 100%': { transform: 'rotate(0deg)' },
+                '10%': { transform: 'rotate(-9deg)' },
+                '20%': { transform: 'rotate(8deg)' },
+                '30%': { transform: 'rotate(-7deg)' },
+                '40%': { transform: 'rotate(4deg)' },
+                '50%': { transform: 'rotate(-5deg)' },
+                '60%': { transform: 'rotate(0deg)' },
               }
             }
           }
@@ -47,13 +57,13 @@
   <script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
-    "vite": "https://esm.sh/vite@^7.3.1",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
   }
 }
 </script>
