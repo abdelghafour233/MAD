@@ -84,50 +84,55 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Share Buttons Footer */}
-        <div className="pt-3 border-t border-gray-100 flex items-center justify-center gap-3">
-            <span className="text-xs text-gray-400 ml-1">مشاركة:</span>
+        <div className="pt-3 border-t border-gray-100 flex items-center justify-center gap-2">
+            <span className="text-[10px] text-gray-400 font-medium ml-1">مشاركة:</span>
+            
             <a 
               href={`https://wa.me/?text=${text}%20${url}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#25D366] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all shadow-sm"
               title="مشاركة عبر واتساب"
             >
-              <MessageCircle size={18} />
+              <MessageCircle size={16} />
             </a>
+            
             <a 
               href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#1877F2] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all shadow-sm"
               title="مشاركة عبر فيسبوك"
             >
-              <Facebook size={18} />
+              <Facebook size={16} />
             </a>
+            
             <a 
               href={`https://twitter.com/intent/tweet?text=${text}&url=${url}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#1DA1F2] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#1DA1F2] text-white flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all shadow-sm"
               title="مشاركة عبر تويتر"
             >
-              <Twitter size={18} />
+              <Twitter size={16} />
             </a>
+            
             <a 
               href={`https://t.me/share/url?url=${url}&text=${text}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#0088cc] transition-colors"
+              className="w-8 h-8 rounded-full bg-[#229ED9] text-white flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all shadow-sm"
               title="مشاركة عبر تلغرام"
             >
-              <Send size={18} />
+              <Send size={16} />
             </a>
+            
             <button 
               onClick={handleCopyLink}
-              className={`transition-colors ${copied ? 'text-brand-600' : 'text-gray-400 hover:text-gray-900'}`}
+              className={`w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center transition-all hover:bg-gray-50 ${copied ? 'text-green-600 border-green-200 bg-green-50' : 'text-gray-500'}`}
               title="نسخ الرابط"
             >
-              {copied ? <Check size={18} /> : <LinkIcon size={18} />}
+              {copied ? <Check size={16} /> : <LinkIcon size={16} />}
             </button>
         </div>
       </div>

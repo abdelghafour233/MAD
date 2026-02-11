@@ -107,7 +107,7 @@ export const ProductDetails: React.FC = () => {
               <div className="mt-auto pt-8 border-t border-gray-100 space-y-6">
                 <button 
                   onClick={handleBuy}
-                  className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#20b85a] transition-all flex items-center justify-center gap-3 shadow-lg shadow-gray-900/10 hover:shadow-brand-500/30"
+                  className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#20b85a] transition-all flex items-center justify-center gap-3 shadow-lg shadow-gray-900/10 hover:shadow-brand-500/30 hover:-translate-y-1"
                 >
                   <MessageCircle size={24} />
                   اطلب الآن عبر واتساب
@@ -133,7 +133,7 @@ export const ProductDetails: React.FC = () => {
                       href={`https://wa.me/?text=${text}%20${url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="md:flex-1 bg-[#25D366]/10 text-[#25D366] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all"
+                      className="md:flex-1 bg-[#25D366] text-white py-2.5 px-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#20b85a] shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
                     >
                       <MessageCircle size={18} />
                       واتساب
@@ -142,7 +142,7 @@ export const ProductDetails: React.FC = () => {
                       href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="md:flex-1 bg-[#1877F2]/10 text-[#1877F2] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#1877F2] hover:text-white transition-all"
+                      className="md:flex-1 bg-[#1877F2] text-white py-2.5 px-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#166fe5] shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
                     >
                       <Facebook size={18} />
                       فيسبوك
@@ -151,7 +151,7 @@ export const ProductDetails: React.FC = () => {
                       href={`https://twitter.com/intent/tweet?text=${text}&url=${url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="md:flex-1 bg-black/5 text-black py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-black hover:text-white transition-all"
+                      className="md:flex-1 bg-[#1DA1F2] text-white py-2.5 px-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#0c85d0] shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
                     >
                       <Twitter size={18} />
                       تويتر
@@ -160,14 +160,14 @@ export const ProductDetails: React.FC = () => {
                       href={`https://t.me/share/url?url=${url}&text=${text}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="md:flex-1 bg-[#0088cc]/10 text-[#0088cc] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#0088cc] hover:text-white transition-all"
+                      className="md:flex-1 bg-[#229ED9] text-white py-2.5 px-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#1f8rbc] shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
                     >
                       <Send size={18} />
                       تلغرام
                     </a>
                     <button 
                       onClick={handleCopyLink}
-                      className="col-span-2 md:col-span-1 md:w-auto bg-white border border-gray-200 text-gray-600 p-2 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-all flex items-center justify-center"
+                      className="col-span-2 md:col-span-1 md:w-auto bg-white border border-gray-200 text-gray-600 p-2.5 rounded-xl hover:bg-gray-100 hover:text-gray-900 transition-all flex items-center justify-center shadow-sm"
                       title="نسخ الرابط"
                     >
                       {copied ? <Check size={20} className="text-green-500" /> : <LinkIcon size={20} />}
