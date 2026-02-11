@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Eye, Facebook, Link as LinkIcon, MessageCircle, Check } from 'lucide-react';
+import { ShoppingCart, Eye, Facebook, Link as LinkIcon, MessageCircle, Check, Twitter, Send } from 'lucide-react';
 import { Product } from '../types';
 
 interface ProductCardProps {
@@ -84,7 +84,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Share Buttons Footer */}
-        <div className="pt-3 border-t border-gray-100 flex items-center justify-center gap-4">
+        <div className="pt-3 border-t border-gray-100 flex items-center justify-center gap-3">
             <span className="text-xs text-gray-400 ml-1">مشاركة:</span>
             <a 
               href={`https://wa.me/?text=${text}%20${url}`}
@@ -103,6 +103,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               title="مشاركة عبر فيسبوك"
             >
               <Facebook size={18} />
+            </a>
+            <a 
+              href={`https://twitter.com/intent/tweet?text=${text}&url=${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#1DA1F2] transition-colors"
+              title="مشاركة عبر تويتر"
+            >
+              <Twitter size={18} />
+            </a>
+            <a 
+              href={`https://t.me/share/url?url=${url}&text=${text}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[#0088cc] transition-colors"
+              title="مشاركة عبر تلغرام"
+            >
+              <Send size={18} />
             </a>
             <button 
               onClick={handleCopyLink}

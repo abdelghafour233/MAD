@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ShoppingCart, Zap, ShieldCheck, Check, Facebook, Link as LinkIcon, MessageCircle, Share2 } from 'lucide-react';
+import { ShoppingCart, Zap, ShieldCheck, Check, Facebook, Link as LinkIcon, MessageCircle, Share2, Twitter, Send } from 'lucide-react';
 import { PRODUCTS } from '../constants';
 import { Product } from '../types';
 
@@ -128,12 +128,12 @@ export const ProductDetails: React.FC = () => {
                     <Share2 size={18} />
                     <span>شارك هذا المنتج مع أصدقائك</span>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">
                     <a 
                       href={`https://wa.me/?text=${text}%20${url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 bg-[#25D366]/10 text-[#25D366] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all"
+                      className="md:flex-1 bg-[#25D366]/10 text-[#25D366] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all"
                     >
                       <MessageCircle size={18} />
                       واتساب
@@ -142,14 +142,32 @@ export const ProductDetails: React.FC = () => {
                       href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 bg-[#1877F2]/10 text-[#1877F2] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#1877F2] hover:text-white transition-all"
+                      className="md:flex-1 bg-[#1877F2]/10 text-[#1877F2] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#1877F2] hover:text-white transition-all"
                     >
                       <Facebook size={18} />
                       فيسبوك
                     </a>
+                    <a 
+                      href={`https://twitter.com/intent/tweet?text=${text}&url=${url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="md:flex-1 bg-black/5 text-black py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-black hover:text-white transition-all"
+                    >
+                      <Twitter size={18} />
+                      تويتر
+                    </a>
+                    <a 
+                      href={`https://t.me/share/url?url=${url}&text=${text}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="md:flex-1 bg-[#0088cc]/10 text-[#0088cc] py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#0088cc] hover:text-white transition-all"
+                    >
+                      <Send size={18} />
+                      تلغرام
+                    </a>
                     <button 
                       onClick={handleCopyLink}
-                      className="bg-white border border-gray-200 text-gray-600 p-2 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-all"
+                      className="col-span-2 md:col-span-1 md:w-auto bg-white border border-gray-200 text-gray-600 p-2 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-all flex items-center justify-center"
                       title="نسخ الرابط"
                     >
                       {copied ? <Check size={20} className="text-green-500" /> : <LinkIcon size={20} />}
