@@ -42,7 +42,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '2',
     title: 'Windows 11 Pro - مفتاح أصلي',
-    price: 99,
+    price: 111,
     oldPrice: 250,
     category: 'software',
     image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80',
