@@ -5,10 +5,9 @@ import { Product } from '../types';
 
 interface ProductCardProps {
   product: Product;
-  onBuyNow: (product: Product) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuyNow }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [copied, setCopied] = useState(false);
 
   const productUrl = `${window.location.origin}${window.location.pathname}#/product/${product.id}`;
@@ -19,6 +18,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuyNow }) =
     navigator.clipboard.writeText(productUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleBuy = () => {
+    const phoneNumber = "212649075664";
+    const message = `السلام عليكم، أريد شراء: ${product.title} بسعر ${product.price} درهم`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -69,10 +75,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onBuyNow }) =
           </div>
           
           <button 
-            onClick={() => onBuyNow(product)}
+            onClick={handleBuy}
             className="bg-gray-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-brand-600 transition-colors flex items-center gap-1"
           >
-            <ShoppingCart size={14} />
+            <MessageCircle size={14} />
             شراء
           </button>
         </div>

@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { PRODUCTS, CATEGORIES } from '../constants';
 import { ProductCard } from '../components/ProductCard';
-import { CheckoutModal } from '../components/CheckoutModal';
-import { Product } from '../types';
 
 export const CategoryPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   
   // Scroll to top on category change
   useEffect(() => {
@@ -44,7 +41,6 @@ export const CategoryPage: React.FC = () => {
               <ProductCard 
                 key={product.id} 
                 product={product} 
-                onBuyNow={setSelectedProduct} 
               />
             ))}
           </div>
@@ -54,12 +50,6 @@ export const CategoryPage: React.FC = () => {
           </div>
         )}
       </div>
-
-      <CheckoutModal 
-        product={selectedProduct} 
-        isOpen={!!selectedProduct} 
-        onClose={() => setSelectedProduct(null)} 
-      />
     </div>
   );
 };

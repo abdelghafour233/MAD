@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { CATEGORIES, PRODUCTS } from '../constants';
 import { ProductCard } from '../components/ProductCard';
-import { CheckoutModal } from '../components/CheckoutModal';
-import { Product } from '../types';
 
 export const Home: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
@@ -90,7 +86,6 @@ export const Home: React.FC = () => {
               <ProductCard 
                 key={product.id} 
                 product={product} 
-                onBuyNow={setSelectedProduct} 
               />
             ))}
           </div>
@@ -102,12 +97,6 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
-      <CheckoutModal 
-        product={selectedProduct} 
-        isOpen={!!selectedProduct} 
-        onClose={() => setSelectedProduct(null)} 
-      />
     </div>
   );
 };

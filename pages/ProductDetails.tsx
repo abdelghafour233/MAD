@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ShoppingCart, Zap, ShieldCheck, Check, Facebook, Link as LinkIcon, MessageCircle, Share2 } from 'lucide-react';
 import { PRODUCTS } from '../constants';
-import { CheckoutModal } from '../components/CheckoutModal';
 import { Product } from '../types';
 
 export const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   
   useEffect(() => {
@@ -36,6 +34,13 @@ export const ProductDetails: React.FC = () => {
     navigator.clipboard.writeText(productUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleBuy = () => {
+    const phoneNumber = "212649075664";
+    const message = `السلام عليكم، أريد شراء: ${product.title} بسعر ${product.price} درهم`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -101,10 +106,10 @@ export const ProductDetails: React.FC = () => {
 
               <div className="mt-auto pt-8 border-t border-gray-100 space-y-6">
                 <button 
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-brand-600 transition-all flex items-center justify-center gap-3 shadow-lg shadow-gray-900/10 hover:shadow-brand-500/30"
+                  onClick={handleBuy}
+                  className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#20b85a] transition-all flex items-center justify-center gap-3 shadow-lg shadow-gray-900/10 hover:shadow-brand-500/30"
                 >
-                  <ShoppingCart size={20} />
+                  <MessageCircle size={24} />
                   اطلب الآن عبر واتساب
                 </button>
                 
@@ -157,12 +162,6 @@ export const ProductDetails: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <CheckoutModal 
-        product={product} 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-      />
     </div>
   );
 };
