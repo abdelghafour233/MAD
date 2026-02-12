@@ -88,18 +88,17 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
   }, [facebookPixelId]);
 
-  const trackEvent = (eventName: string, data?: any) => {
+  const trackEvent = (eventName: string, data: any = {}) => {
     if (facebookPixelId && window.fbq) {
-      // If testEventCode exists, add it to the event parameters if needed, 
-      // though usually test_event_code is passed during init or via server-side API.
-      // For client-side pixel, standard practice is usually just tracking standard events.
-      // If you need to log it for debugging:
+      // Combine existing data with test_event_code if present
+      const eventData = { ...data };
       if (testEventCode) {
-         console.log(`🧪 Test Event Code Active: ${testEventCode}`);
+         eventData.test_event_code = testEventCode;
+         console.log(`🧪 Adding Test Event Code to payload: ${testEventCode}`);
       }
       
-      window.fbq('track', eventName, data);
-      console.log(`📡 Pixel Event: ${eventName}`, data);
+      window.fbq('track', eventName, eventData);
+      console.log(`📡 Pixel Event: ${eventName}`, eventData);
     } else {
       console.log(`⚠️ Pixel Event (Mock): ${eventName}`, data);
     }

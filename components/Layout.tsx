@@ -153,8 +153,13 @@ export const Layout: React.FC = () => {
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 flex items-center justify-between text-gray-500 text-sm">
             <span>© {new Date().getFullYear()} جميع الحقوق محفوظة لمتجر ديجيتال اوفيس</span>
-            <Link to="/admin" className="opacity-40 hover:opacity-100 transition-opacity p-2" title="Admin Panel">
-              <Lock size={16} />
+            <Link 
+              to="/admin" 
+              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded-full transition-colors" 
+              title="الدخول للوحة التحكم"
+            >
+              <Lock size={14} className="text-brand-500" />
+              <span className="font-bold text-gray-300">لوحة التحكم</span>
             </Link>
           </div>
         </div>
