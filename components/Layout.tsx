@@ -12,6 +12,7 @@ export const Layout: React.FC = () => {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   const isActive = (path: string) => location.pathname === path ? 'text-brand-600 font-bold' : 'text-gray-600 hover:text-brand-600';
+  const isAdmin = location.pathname === '/admin';
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -76,43 +77,47 @@ export const Layout: React.FC = () => {
       </main>
 
       {/* Features Banner */}
-      <div className="bg-white border-t border-gray-100 py-12">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center p-4">
-            <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
-              <Zap size={32} />
+      {!isAdmin && (
+        <div className="bg-white border-t border-gray-100 py-12">
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center text-center p-4">
+              <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
+                <Zap size={32} />
+              </div>
+              <h3 className="font-bold text-lg mb-2">تسليم فوري</h3>
+              <p className="text-gray-500 text-sm">استلم كود التفعيل أو الاشتراك فوراً عبر الواتساب بعد تأكيد الدفع</p>
             </div>
-            <h3 className="font-bold text-lg mb-2">تسليم فوري</h3>
-            <p className="text-gray-500 text-sm">استلم كود التفعيل أو الاشتراك فوراً عبر الواتساب بعد تأكيد الدفع</p>
-          </div>
-          <div className="flex flex-col items-center text-center p-4">
-            <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
-              <ShieldCheck size={32} />
+            <div className="flex flex-col items-center text-center p-4">
+              <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
+                <ShieldCheck size={32} />
+              </div>
+              <h3 className="font-bold text-lg mb-2">ضمان الفعالية</h3>
+              <p className="text-gray-500 text-sm">جميع مفاتيحنا أصلية 100% ونضمن لك العمل طوال فترة الاشتراك</p>
             </div>
-            <h3 className="font-bold text-lg mb-2">ضمان الفعالية</h3>
-            <p className="text-gray-500 text-sm">جميع مفاتيحنا أصلية 100% ونضمن لك العمل طوال فترة الاشتراك</p>
-          </div>
-          <div className="flex flex-col items-center text-center p-4">
-            <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
-              <MessageCircle size={32} />
+            <div className="flex flex-col items-center text-center p-4">
+              <div className="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
+                <MessageCircle size={32} />
+              </div>
+              <h3 className="font-bold text-lg mb-2">دعم فني 7/7</h3>
+              <p className="text-gray-500 text-sm">فريقنا جاهز لمساعدتك في التفعيل وتثبيت البرامج في أي وقت</p>
             </div>
-            <h3 className="font-bold text-lg mb-2">دعم فني 7/7</h3>
-            <p className="text-gray-500 text-sm">فريقنا جاهز لمساعدتك في التفعيل وتثبيت البرامج في أي وقت</p>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/212649075664"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20b85a] transition-all animate-shake hover:animate-none flex items-center justify-center border-4 border-white ring-2 ring-gray-100"
-        title="تواصل معنا عبر واتساب"
-        aria-label="Chat on WhatsApp"
-      >
-        <MessageCircle size={32} fill="white" className="text-white" />
-      </a>
+      {/* Floating WhatsApp Button - Hide on Admin Page */}
+      {!isAdmin && (
+        <a
+          href="https://wa.me/212649075664"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20b85a] transition-all animate-shake hover:animate-none flex items-center justify-center border-4 border-white ring-2 ring-gray-100"
+          title="تواصل معنا عبر واتساب"
+          aria-label="Chat on WhatsApp"
+        >
+          <MessageCircle size={32} fill="white" className="text-white" />
+        </a>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
@@ -148,8 +153,8 @@ export const Layout: React.FC = () => {
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 flex items-center justify-between text-gray-500 text-sm">
             <span>© {new Date().getFullYear()} جميع الحقوق محفوظة لمتجر ديجيتال اوفيس</span>
-            <Link to="/admin" className="opacity-20 hover:opacity-100 transition-opacity">
-              <Lock size={14} />
+            <Link to="/admin" className="opacity-40 hover:opacity-100 transition-opacity p-2" title="Admin Panel">
+              <Lock size={16} />
             </Link>
           </div>
         </div>

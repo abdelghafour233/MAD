@@ -14,6 +14,8 @@ interface SettingsContextType {
   setGoogleSheetUrl: (url: string) => void;
   bannerText: string;
   setBannerText: (text: string) => void;
+  testEventCode: string;
+  setTestEventCode: (code: string) => void;
   trackEvent: (eventName: string, data?: any) => void;
   sendOrderToSheet: (orderData: any) => Promise<void>;
 }
@@ -43,6 +45,7 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [facebookPixelId, setFacebookPixelIdState] = useState(() => getStorageItem('fb_pixel_id', ''));
   const [googleSheetUrl, setGoogleSheetUrlState] = useState(() => getStorageItem('google_sheet_url', ''));
   const [bannerText, setBannerTextState] = useState(() => getStorageItem('banner_text', '🚀 تسليم فوري لجميع الأكواد والاشتراكات عبر واتساب بعد الدفع مباشرة'));
+  const [testEventCode, setTestEventCodeState] = useState(() => getStorageItem('test_event_code', ''));
 
   const setFacebookPixelId = (id: string) => {
     setFacebookPixelIdState(id);
@@ -57,6 +60,11 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
   const setBannerText = (text: string) => {
     setBannerTextState(text);
     setStorageItem('banner_text', text);
+  };
+
+  const setTestEventCode = (code: string) => {
+    setTestEventCodeState(code);
+    setStorageItem('test_event_code', code);
   };
 
   // Initialize Facebook Pixel
@@ -82,6 +90,14 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const trackEvent = (eventName: string, data?: any) => {
     if (facebookPixelId && window.fbq) {
+      // If testEventCode exists, add it to the event parameters if needed, 
+      // though usually test_event_code is passed during init or via server-side API.
+      // For client-side pixel, standard practice is usually just tracking standard events.
+      // If you need to log it for debugging:
+      if (testEventCode) {
+         console.log(`🧪 Test Event Code Active: ${testEventCode}`);
+      }
+      
       window.fbq('track', eventName, data);
       console.log(`📡 Pixel Event: ${eventName}`, data);
     } else {
@@ -119,6 +135,8 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
       setGoogleSheetUrl,
       bannerText,
       setBannerText,
+      testEventCode,
+      setTestEventCode,
       trackEvent,
       sendOrderToSheet
     }}>
