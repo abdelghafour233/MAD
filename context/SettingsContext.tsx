@@ -20,31 +20,49 @@ interface SettingsContextType {
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
-export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Load settings from localStorage or use defaults
-  const [facebookPixelId, setFacebookPixelIdState] = useState(() => localStorage.getItem('fb_pixel_id') || '');
-  const [googleSheetUrl, setGoogleSheetUrlState] = useState(() => localStorage.getItem('google_sheet_url') || '');
-  const [bannerText, setBannerTextState] = useState(() => localStorage.getItem('banner_text') || '🚀 تسليم فوري لجميع الأكواد والاشتراكات عبر واتساب بعد الدفع مباشرة');
+// Helper to safe get from localStorage
+const getStorageItem = (key: string, defaultValue: string) => {
+  try {
+    return localStorage.getItem(key) || defaultValue;
+  } catch (e) {
+    console.warn('LocalStorage access denied', e);
+    return defaultValue;
+  }
+};
 
-  // Update localStorage when state changes
+// Helper to safe set to localStorage
+const setStorageItem = (key: string, value: string) => {
+  try {
+    localStorage.setItem(key, value);
+  } catch (e) {
+    console.warn('LocalStorage access denied', e);
+  }
+};
+
+export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [facebookPixelId, setFacebookPixelIdState] = useState(() => getStorageItem('fb_pixel_id', ''));
+  const [googleSheetUrl, setGoogleSheetUrlState] = useState(() => getStorageItem('google_sheet_url', ''));
+  const [bannerText, setBannerTextState] = useState(() => getStorageItem('banner_text', '🚀 تسليم فوري لجميع الأكواد والاشتراكات عبر واتساب بعد الدفع مباشرة'));
+
   const setFacebookPixelId = (id: string) => {
     setFacebookPixelIdState(id);
-    localStorage.setItem('fb_pixel_id', id);
+    setStorageItem('fb_pixel_id', id);
   };
 
   const setGoogleSheetUrl = (url: string) => {
     setGoogleSheetUrlState(url);
-    localStorage.setItem('google_sheet_url', url);
+    setStorageItem('google_sheet_url', url);
   };
 
   const setBannerText = (text: string) => {
     setBannerTextState(text);
-    localStorage.setItem('banner_text', text);
+    setStorageItem('banner_text', text);
   };
 
   // Initialize Facebook Pixel
   useEffect(() => {
     if (facebookPixelId) {
+      // Standard Facebook Pixel Code
       // @ts-ignore
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -52,8 +70,13 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
       t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
       document,'script','https://connect.facebook.net/en_US/fbevents.js');
       
-      window.fbq('init', facebookPixelId);
-      window.fbq('track', 'PageView');
+      try {
+        window.fbq('init', facebookPixelId);
+        window.fbq('track', 'PageView');
+        console.log('✅ Facebook Pixel Initialized:', facebookPixelId);
+      } catch (e) {
+        console.error('Error initializing Pixel:', e);
+      }
     }
   }, [facebookPixelId]);
 
@@ -61,14 +84,19 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (facebookPixelId && window.fbq) {
       window.fbq('track', eventName, data);
       console.log(`📡 Pixel Event: ${eventName}`, data);
+    } else {
+      console.log(`⚠️ Pixel Event (Mock): ${eventName}`, data);
     }
   };
 
   const sendOrderToSheet = async (orderData: any) => {
-    if (!googleSheetUrl) return;
+    if (!googleSheetUrl) {
+        console.warn('⚠️ No Google Sheet URL configured');
+        return;
+    }
 
     try {
-      // Using no-cors mode for Google Apps Script Web App
+      console.log('📝 Sending order to sheet...', orderData);
       await fetch(googleSheetUrl, {
         method: 'POST',
         mode: 'no-cors', 
@@ -77,9 +105,9 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
         },
         body: JSON.stringify(orderData),
       });
-      console.log('📝 Order sent to Google Sheet');
+      console.log('✅ Order sent to Google Sheet (no-cors)');
     } catch (error) {
-      console.error('Failed to send to Google Sheet', error);
+      console.error('❌ Failed to send to Google Sheet', error);
     }
   };
 

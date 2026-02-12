@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Save, LayoutDashboard, Facebook, FileSpreadsheet, Type, CheckCircle } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
 
@@ -9,10 +9,27 @@ export const AdminDashboard: React.FC = () => {
     bannerText, setBannerText
   } = useSettings();
 
+  // Local state for form inputs
+  const [localPixelId, setLocalPixelId] = useState('');
+  const [localSheetUrl, setLocalSheetUrl] = useState('');
+  const [localBannerText, setLocalBannerText] = useState('');
   const [saved, setSaved] = useState(false);
+
+  // Initialize local state from context
+  useEffect(() => {
+    setLocalPixelId(facebookPixelId);
+    setLocalSheetUrl(googleSheetUrl);
+    setLocalBannerText(bannerText);
+  }, []); // Run once on mount
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Save to Context (which saves to LocalStorage)
+    setFacebookPixelId(localPixelId);
+    setGoogleSheetUrl(localSheetUrl);
+    setBannerText(localBannerText);
+
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
@@ -37,8 +54,8 @@ export const AdminDashboard: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700">Pixel ID</label>
               <input
                 type="text"
-                value={facebookPixelId}
-                onChange={(e) => setFacebookPixelId(e.target.value)}
+                value={localPixelId}
+                onChange={(e) => setLocalPixelId(e.target.value)}
                 placeholder="Ex: 123456789012345"
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#1877F2] focus:border-[#1877F2] outline-none transition-all"
               />
@@ -56,8 +73,8 @@ export const AdminDashboard: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700">Web App URL</label>
               <input
                 type="text"
-                value={googleSheetUrl}
-                onChange={(e) => setGoogleSheetUrl(e.target.value)}
+                value={localSheetUrl}
+                onChange={(e) => setLocalSheetUrl(e.target.value)}
                 placeholder="Ex: https://script.google.com/macros/s/..."
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0F9D58] focus:border-[#0F9D58] outline-none transition-all"
               />
@@ -75,8 +92,8 @@ export const AdminDashboard: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700">نص الإعلان</label>
               <input
                 type="text"
-                value={bannerText}
-                onChange={(e) => setBannerText(e.target.value)}
+                value={localBannerText}
+                onChange={(e) => setLocalBannerText(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
               />
               <p className="text-xs text-gray-500">النص الذي يظهر في الشريط العلوي للموقع.</p>
