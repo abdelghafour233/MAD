@@ -3,16 +3,30 @@ import { useParams, Link } from 'react-router-dom';
 import { ShoppingCart, Zap, ShieldCheck, Check, Facebook, Link as LinkIcon, MessageCircle, Share2, Twitter, Send } from 'lucide-react';
 import { PRODUCTS } from '../constants';
 import { Product } from '../types';
+import { useSettings } from '../context/SettingsContext';
 
 export const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [copied, setCopied] = useState(false);
+  const { trackEvent, sendOrderToSheet } = useSettings();
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
   const product = PRODUCTS.find(p => p.id === id);
+
+  // Track ViewContent when product loads
+  useEffect(() => {
+    if (product) {
+      trackEvent('ViewContent', {
+        content_name: product.title,
+        content_id: product.id,
+        value: product.price,
+        currency: 'MAD'
+      });
+    }
+  }, [product]);
 
   if (!product) {
     return (
@@ -36,7 +50,25 @@ export const ProductDetails: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleBuy = () => {
+  const handleBuy = async () => {
+    // 1. Track Pixel Event
+    trackEvent('Purchase', {
+      content_name: product.title,
+      content_id: product.id,
+      value: product.price,
+      currency: 'MAD'
+    });
+
+    // 2. Send to Google Sheet (Fire and Forget)
+    const orderData = {
+      date: new Date().toISOString(),
+      product: product.title,
+      price: product.price,
+      type: 'WhatsApp Click'
+    };
+    sendOrderToSheet(orderData);
+
+    // 3. Open WhatsApp
     const phoneNumber = "212649075664";
     const message = `السلام عليكم، أريد شراء: ${product.title} بسعر ${product.price} درهم`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

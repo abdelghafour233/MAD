@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { ShoppingBag, Menu, X, Phone, Zap, ShieldCheck, MessageCircle, Monitor } from 'lucide-react';
+import { ShoppingBag, Menu, X, Phone, Zap, ShieldCheck, MessageCircle, Monitor, Lock } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
 
 export const Layout: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { bannerText } = useSettings();
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -13,9 +15,9 @@ export const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Top Banner */}
+      {/* Top Banner - Dynamic Text */}
       <div className="bg-brand-600 text-white text-xs py-2 px-4 text-center">
-        <p>🚀 تسليم فوري لجميع الأكواد والاشتراكات عبر واتساب بعد الدفع مباشرة</p>
+        <p>{bannerText}</p>
       </div>
 
       {/* Navbar */}
@@ -144,8 +146,11 @@ export const Layout: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} جميع الحقوق محفوظة لمتجر ديجيتال اوفيس
+          <div className="border-t border-gray-800 mt-12 pt-8 flex items-center justify-between text-gray-500 text-sm">
+            <span>© {new Date().getFullYear()} جميع الحقوق محفوظة لمتجر ديجيتال اوفيس</span>
+            <Link to="/admin" className="opacity-20 hover:opacity-100 transition-opacity">
+              <Lock size={14} />
+            </Link>
           </div>
         </div>
       </footer>

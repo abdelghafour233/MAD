@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Eye, Facebook, Link as LinkIcon, MessageCircle, Check, Twitter, Send } from 'lucide-react';
 import { Product } from '../types';
+import { useSettings } from '../context/SettingsContext';
 
 interface ProductCardProps {
   product: Product;
@@ -9,6 +10,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [copied, setCopied] = useState(false);
+  const { trackEvent } = useSettings();
 
   const productUrl = `${window.location.origin}${window.location.pathname}#/product/${product.id}`;
   const text = encodeURIComponent(`شاهد هذا العرض المميز: ${product.title}`);
@@ -21,6 +23,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   const handleBuy = () => {
+    // Facebook Pixel Track
+    trackEvent('InitiateCheckout', {
+      content_name: product.title,
+      content_id: product.id,
+      value: product.price,
+      currency: 'MAD'
+    });
+
     const phoneNumber = "212649075664";
     const message = `السلام عليكم، أريد شراء: ${product.title} بسعر ${product.price} درهم`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
